@@ -48,7 +48,7 @@ class ApidocController extends Controller
 
     // 获取列表
     public function list(Request $request) {
-        $docs = Apidoc::orderBy('created_at', 'desc')->paginate(20);
+        $docs = Apidoc::orderBy('classify', 'desc')->paginate(20);
         return $this->success($docs);  
     }
     // 按分类查询
