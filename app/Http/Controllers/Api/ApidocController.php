@@ -10,7 +10,7 @@ use App\Http\Requests\ApidocRequest;
 class ApidocController extends Controller
 {
     public function add(Request $request) {
-        // 接口属于哪个分类下的 classify
+        // 接口属于哪个分类下的 project_id
         // 接口名 url
         // 接口描叙 title
         // 请求类型 requestType
@@ -37,7 +37,7 @@ class ApidocController extends Controller
     // 软删除
     public function delete(Request $request) {
         Apidoc::findOrFail($request->id)->delete();
-        return $this->message('api下架成功');
+        return $this->message('api删除成功');
     }
 
     // 恢复软删除
@@ -46,14 +46,15 @@ class ApidocController extends Controller
         return $this->message('api恢复成功');
     }
 
-    // 获取列表
+    // 按项目获取列表
     public function list(Request $request) {
-        $docs = Apidoc::orderBy('classify', 'desc')->paginate(20);
-        return $this->success($docs);  
+        $docs = Apidoc::where('project_id', $request->id)->orderBy('created_at', 'desc')->paginate(50);
+        return $this->success($docs);
     }
-    // 按分类查询
-    public function query(Request $request) {
-        $docs = Apidoc::where("classify", $request->classify)->orderBy('created_at', 'desc')->paginate(20);
+
+    // 获取所有列表
+    public function allList(Request $request) {
+        $docs = Apidoc::orderBy('created_at', 'desc')->paginate(50);
         return $this->success($docs);
     }
 

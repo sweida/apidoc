@@ -13,11 +13,15 @@ class Apidoc extends Model
 
     // 接受的字段
     protected $fillable = [
-        'classify', 'url', 'title', 'requestType', 'requestParams', 'results', 'user_id'
+        'project_id', 'url', 'title', 'requestType', 'requestParams', 'results', 'user_id'
     ];
 
     // 表格隐藏的字段
     protected $hidden = [
         'updated_at'
     ];
+
+    public function project() {
+        return $this->belongsTo('App\Models\project');
+    }
 }

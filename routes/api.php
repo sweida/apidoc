@@ -65,13 +65,18 @@ Route::namespace('Api')->prefix('v2')->group(function () {
     });
 
     // api文档
+    Route::post('/project/add', 'ProjectController@add')->name('Project.add');
+    Route::post('/project/edit', 'ProjectController@edit')->name('Project.edit');
+    Route::post('/project/list', 'ProjectController@list')->name('Project.list');
+    Route::post('/project/delete', 'ProjectController@delete')->name('Project.delete');
+
     Route::post('/apidoc/add', 'ApidocController@add')->name('Apidoc.add');
+    Route::post('/apidoc/list', 'ApidocController@list')->name('Apidoc.list');
     Route::post('/apidoc/edit', 'ApidocController@edit')->name('Apidoc.edit');
     Route::post('/apidoc/delete', 'ApidocController@delete')->name('Apidoc.delete');
     Route::post('/apidoc/restored', 'ApidocController@restored')->name('Apidoc.restored');
-    Route::get('/apidoc/list', 'ApidocController@list')->name('Apidoc.list');
     Route::post('/apidoc/deleteList', 'ApidocController@deleteList')->name('Apidoc.deleteList');
-    Route::post('/apidoc/query', 'ApidocController@query')->name('Apidoc.query');
+    Route::post('/apidoc/alllist', 'ApidocController@allList')->name('Apidoc.allList');
     Route::get('/apidoc/person', 'ApidocController@person')->name('Apidoc.person');
 });
 

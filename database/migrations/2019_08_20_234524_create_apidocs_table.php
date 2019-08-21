@@ -24,7 +24,7 @@ class CreateApidocsTable extends Migration
             // unique 唯一
             // nullable 可以为空
             $table->Increments('id');
-            $table->string('classify')->nullable();
+            $table->unsignedInteger('project_id');
             $table->string('url');
             $table->string('title')->nullable();
             $table->string('requestType');
@@ -35,6 +35,7 @@ class CreateApidocsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 
