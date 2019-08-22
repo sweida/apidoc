@@ -48,7 +48,10 @@ class ApidocController extends Controller
 
     // 按项目获取列表
     public function list(Request $request) {
-        $docs = Apidoc::where('project_id', $request->id)->orderBy('created_at', 'desc')->paginate(50);
+        $docs = Apidoc::with(['project'=>function($query){
+                $query->select('id','title');
+                }])
+            ->where('project_id', $request->id)->orderBy('created_at', 'desc')->paginate(50);
         return $this->success($docs);
     }
 
