@@ -22,6 +22,6 @@ class Apidoc extends Model
     ];
 
     public function project() {
-        return $this->belongsTo('App\Models\project');
+        return $this->belongsTo('App\Models\Project');
     }
 }
