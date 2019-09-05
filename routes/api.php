@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 
 // 版本号
 Route::get('/version', function() {
-    return ["name" => "laravel-blog-api", "author" => "sweida", "version" => "v1"];
+    return ["name" => "api-doc", "author" => "sweida", "version" => "v1"];
 });
 
 Route::namespace('Api')->prefix('v1')->group(function () {
