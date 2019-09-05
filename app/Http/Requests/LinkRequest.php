@@ -6,7 +6,7 @@ class LinkRequest extends FormRequest
 {
     public function rules()
     {
-        if (FormRequest::getPathInfo() == '/api/v2/link/add'){
+        if (FormRequest::getPathInfo() == '/api/v1/link/add'){
             return [
                 'title' => ['required'],
                 'url' => ['required'],

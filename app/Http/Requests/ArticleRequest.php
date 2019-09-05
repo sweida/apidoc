@@ -6,7 +6,7 @@ class ArticleRequest extends FormRequest
 {
     public function rules()
     {
-        if (FormRequest::getPathInfo() == '/api/v2/article/add'){
+        if (FormRequest::getPathInfo() == '/api/v1/article/add'){
             return [
                 'title' => ['required'],
                 'content' => ['required'],

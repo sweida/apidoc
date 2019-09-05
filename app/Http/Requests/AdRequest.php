@@ -6,7 +6,7 @@ class AdRequest extends FormRequest
 {
     public function rules()
     {
-        if (FormRequest::getPathInfo() == '/api/v2/ad/add'){
+        if (FormRequest::getPathInfo() == '/api/v1/ad/add'){
             return [
                 'title' => ['required'],
                 'url' => ['required'],

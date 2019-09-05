@@ -8,7 +8,7 @@ class ProjectRequest extends FormRequest
 {
         public function rules()
     {
-        if (FormRequest::getPathInfo() == '/api/v2/project/add'){
+        if (FormRequest::getPathInfo() == '/api/v1/project/add'){
             return [
                 'title' => ['required'],
             ];

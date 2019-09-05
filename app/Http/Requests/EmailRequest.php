@@ -6,7 +6,7 @@ class EmailRequest extends FormRequest
 {
     public function rules()
     {
-        if (FormRequest::getPathInfo() == '/api/v2/user/send_email'){
+        if (FormRequest::getPathInfo() == '/api/v1/user/send_email'){
             return [
                 'email' => ['required', 'exists:users,email'],
             ];

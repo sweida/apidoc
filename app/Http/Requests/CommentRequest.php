@@ -8,22 +8,22 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         switch (FormRequest::getPathInfo()){
-            case '/api/v2/comment/add':
+            case '/api/v1/comment/add':
                 return [
                     'content' => ['required'],
                     'article_id' => ['required', 'exists:articles,id,deleted_at,NULL'], // 忽略软删除的数据
                     'reply_id' => ['exists:comments,id'],
                 ];
-            case '/api/v2/comment/edit':
+            case '/api/v1/comment/edit':
                 return [
                     'id' => ['required', 'exists:comments,id'],
                     'content' => ['required'],
                 ];
-            case '/api/v2/comment/read':
+            case '/api/v1/comment/read':
                 return [
                     'article_id' => ['required', 'exists:articles,id,deleted_at,NULL'],
                 ];
-            case '/api/v2/comment/delete':
+            case '/api/v1/comment/delete':
                 return [
                     'id' => ['required', 'exists:comments,id']
                 ];

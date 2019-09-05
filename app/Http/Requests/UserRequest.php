@@ -7,24 +7,24 @@ class UserRequest extends FormRequest
     public function rules()
     {
         switch (FormRequest::getPathInfo()){
-            case '/api/v2/signup':
+            case '/api/v1/signup':
                 return [
                     'name' => ['required', 'max:16', 'unique:users,name'],
                     'email' => ['required', 'unique:users,email'],
                     'password' => ['required', 'between:6,20'],
                     'phone' => ['unique:users,phone']
                 ];
-            case '/api/v2/login':
+            case '/api/v1/login':
                 return [
                     'name' => ['required', 'max:16', 'exists:users,name'],
                     'password' => ['required', 'between:6,20'],
                 ];
-            case '/api/v2/admin/login':
+            case '/api/v1/admin/login':
                 return [
                     'name' => ['required', 'max:16', 'exists:users,name'],
                     'password' => ['required', 'between:6,20'],
                 ];
-            case '/api/v2/user/resetpassword':
+            case '/api/v1/user/resetpassword':
                 return [
                     'old_password' => ['required', 'between:6,20'],
                     'new_password' => ['required', 'between:6,20'],
