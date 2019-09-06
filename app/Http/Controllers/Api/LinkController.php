@@ -32,7 +32,7 @@ class LinkController extends Controller
 
     // 获取所有链接 分页
     public function list(){
-        $links = Link::paginate(18);
+        $links = Link::paginate(1000);
         return $this->success($links);
     }
 
