@@ -8,7 +8,7 @@ class Link extends Model
 {
     // 接受的字段
     protected $fillable = [
-        'title', 'url', 'img', 'desc',
+        'title', 'url', 'username', 'password', 'type'
     ];
 
     // 表格隐藏的字段

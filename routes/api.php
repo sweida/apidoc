@@ -78,5 +78,15 @@ Route::namespace('Api')->prefix('v1')->group(function () {
     Route::post('/apidoc/deleteList', 'ApidocController@deleteList')->name('Apidoc.deleteList');
     Route::post('/apidoc/alllist', 'ApidocController@allList')->name('Apidoc.allList');
     Route::get('/apidoc/person', 'ApidocController@person')->name('Apidoc.person');
+
+
+    // 链接模块
+    Route::post('/link/list', 'LinkController@list')->name('link.list');
+    Route::middleware(['api.refresh'])->group(function () {
+        Route::post('/link/add', 'LinkController@add')->name('link.add');
+        Route::post('/link/edit', 'LinkController@edit')->name('link.edit');
+        Route::post('/link/delete','LinkController@delete')->name('link.delete');
+    });
+
 });
 
