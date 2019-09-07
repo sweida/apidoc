@@ -88,5 +88,12 @@ Route::namespace('Api')->prefix('v1')->group(function () {
         Route::post('/link/delete','LinkController@delete')->name('link.delete');
     });
 
+    // 营业执照
+    Route::post('/business/list', 'BusinessController@list')->name('business.list');
+    Route::middleware(['api.refresh'])->group(function () {
+        Route::post('/business/add', 'BusinessController@add')->name('business.add');
+        Route::post('/business/adds', 'BusinessController@adds')->name('business.adds');
+    });
+
 });
 
