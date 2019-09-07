@@ -10,5 +10,6 @@ class business extends Model
     protected $fillable = [
         'name', 'license', 'type'
     ];
+    
 
 }
