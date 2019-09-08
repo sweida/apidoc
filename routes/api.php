@@ -42,7 +42,9 @@ Route::namespace('Api')->prefix('v1')->group(function () {
     
     Route::middleware(['api.refresh', 'adminRole'])->group(function () {
         Route::post('/user/list','UserController@list')->name('users.list');
+        Route::post('/user/deleteorrestored','UserController@deleteOrRestored')->name('users.deleteorrestored');
     });
+
 
     // 图片上传又拍云
     Route::middleware(['api.refresh', 'adminRole'])->group(function () {

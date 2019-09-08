@@ -57,7 +57,7 @@ class UserController extends Controller
 
     //返回用户列表 10个用户为一页
     public function list(){
-        $users = User::paginate(10);
+        $users = User::withTrashed()->get();
         foreach($users as $item) {
             if ($item->is_admin) {
                 $item->admin = true;
@@ -78,6 +78,18 @@ class UserController extends Controller
         $user->update(['password' => $request->new_password]);
         return $this->message('密码修改成功');
     }
+
+    // 冻结用户
+    public function deleteOrRestored(Request $request){
+        if ($request->delete) {
+            User::findOrFail($request->id)->delete();
+            return $this->message('冻结成功');
+        } else {
+            User::withTrashed()->findOrFail($request->id)->restore();
+            return $this->message('恢复正常');
+        }
+    }
+
 
 
 }
