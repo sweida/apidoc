@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Apidoc;
+use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\ApidocRequest;
@@ -49,9 +50,11 @@ class ApidocController extends Controller
     // 按项目获取列表
     public function list(Request $request) {
         $docs = Apidoc::with(['project'=>function($query){
-                $query->select('id','title');
-                }])
-            ->where('project_id', $request->id)->orderBy('created_at', 'desc')->paginate(50);
+                    $query->select('id','title');
+                }])->where('project_id', $request->id)->orderBy('created_at', 'desc')->paginate(50);
+
+        $project= collect(['project' => Project::find($request->id)]);
+        $docs = $project->merge($docs);
         return $this->success($docs);
     }
 
@@ -70,7 +73,9 @@ class ApidocController extends Controller
     // 查看个人列表
     public function person(Request $request) {
         $user = Auth::guard('api')->user();
-        $docs = Apidoc::where("user_id", $user['user_id'])->orderBy('created_at', 'desc')->paginate(20);
+        $docs = Apidoc::with(['project'=>function($query){
+                    $query->select('id','title');
+                }])->where("user_id", $user['user_id'])->orderBy('created_at', 'desc')->paginate(20);
         return $this->success($docs);
     }
 }
