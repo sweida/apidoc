@@ -20,7 +20,7 @@ class ApidocController extends Controller
 
         $user = Auth::guard('api')->user();
         $array = $request->all();
-        $array['user_id'] = $user['id'];
+        $array['user_id'] = $user['user_id'];
 
         Apidoc::create($array);
         return $this->message("api添加成功！");
@@ -70,7 +70,7 @@ class ApidocController extends Controller
     // 查看个人列表
     public function person(Request $request) {
         $user = Auth::guard('api')->user();
-        $docs = Apidoc::where("user_id", $user['id'])->orderBy('created_at', 'desc')->paginate(20);
+        $docs = Apidoc::where("user_id", $user['user_id'])->orderBy('created_at', 'desc')->paginate(20);
         return $this->success($docs);
     }
 }
