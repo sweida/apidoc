@@ -54,8 +54,8 @@ class UserController extends Controller
                 'identifier' => $item->name,
                 'password' => $item->password
             ];
-            UserAuth::updateOrCreate($emailIdentifier);
-            UserAuth::updateOrCreate($nameIdentifier);
+            UserAuth::create($emailIdentifier);
+            UserAuth::create($nameIdentifier);
         }
         // return ['s' => $users];
         return $this->message('批量生成成功');
