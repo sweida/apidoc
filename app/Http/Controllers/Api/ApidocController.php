@@ -66,7 +66,9 @@ class ApidocController extends Controller
 
     // 获取软删除列表
     public function deleteList(Request $request) {
-        $docs = Apidoc::onlyTrashed()->orderBy('created_at', 'desc')->paginate(20);
+        $docs = Apidoc::with(['project'=>function($query){
+                    $query->select('id','title');
+                }])->onlyTrashed()->orderBy('created_at', 'desc')->paginate(20);
         return $this->success($docs);
     }
 
