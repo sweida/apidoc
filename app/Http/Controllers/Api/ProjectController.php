@@ -18,7 +18,6 @@ class ProjectController extends Controller
     // 项目列表
     public function list() {
         $projects = Project::orderBy('created_at')->get();
-        // 拿回文章的标签和评论总数
         foreach($projects as $item){
             $item->count = Apidoc::where('project_id', $item->id)->count();
         }  

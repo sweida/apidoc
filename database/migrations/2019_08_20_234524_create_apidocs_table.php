@@ -28,8 +28,8 @@ class CreateApidocsTable extends Migration
             $table->string('url');
             $table->string('title')->nullable();
             $table->string('requestType');
-            $table->string('requestParams')->nullable();
-            $table->string('results')->nullable();
+            $table->text('requestParams')->nullable();
+            $table->text('results')->nullable();
             $table->unsignedInteger('user_id');
             $table->softDeletes();
             $table->timestamps();
